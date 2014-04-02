@@ -5,8 +5,8 @@
       <title>Signup</title>
       <link href="style.css" rel="stylesheet" type="text/css">
 
-      <script src="bower_components/jquery/jquery.js"></script>
-      <script src="bower_components/angular/angular.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
       
     </head>
 
@@ -16,7 +16,7 @@
 
 require ("./includes/dbconnect.php");
 require ("./includes/config.php");
-require ("./language/nl.php");            <!-- alleen NL is beschikbaar -->
+require ("./language/nl.php");            
 include 'functies.php';
 
 $username = mysql_real_escape_string($_POST['username']);
@@ -68,57 +68,42 @@ function userAvail($username) {
 
 ?>
 
-  <center>
-    <p>&nbsp;</p>
-      <table>
-      <tr>                 
-        <td align="right" valign="bottom" bordercolor="#333333" >
-          <?php echo TEXT_EXPLAIN_SIGNUP; ?>
-          <form method='POST' name="signupForm" style='login'> 
-            <table>
-              <tr> 
-                <td align="left"> <h1> <?php echo TEXT_SIGNUP_TITLE; ?> </h1> </td>
-              </tr>
 
-              <tr>
-                <td align='left'> <label class='vert'><?php echo TEXT_USER; ?> </label> </td>
-                <td> <input type='text' name='username'>  </td>
-              </tr>
+<div>
+  <?php echo TEXT_EXPLAIN_SIGNUP; ?>
+  <form method='POST' name="signupForm" style='login'> 
 
-              <tr>
-                <td align="left"> <label class='vert'> <?php echo TEXT_PASSWORD; ?> </label> </td>
-                <td> <input type='password' name='password'>  </td>
-              </tr>
+    <h1> <?php echo TEXT_SIGNUP_TITLE; ?> </h1>
+    <div>
+      <label class='vert'><?php echo TEXT_USER; ?> </label>
+      <input type='text' name='username'>
+    </div>
 
-              <tr>
-                <td align="left"> <label class='vert'> <?php echo TEXT_REPEAT_PASSWORD; ?> </label> </td>
-                <td> <input type='password' name='hpassword'> </td>
-              </tr>
+    <div>
+      <label class='vert'> <?php echo TEXT_PASSWORD; ?> </label> 
+      <input type='password' name='password'> 
+    </div>
 
-              <tr>
-                <td align="left"> <label class='vert'> <?php echo TEXT_EMAIL; ?> </label> </td>
-                <td> <input type='text' name='email'> </td>
-              </tr>
+    <div>
+      <label class='vert'> <?php echo TEXT_REPEAT_PASSWORD; ?> </label>
+      <input type='password' name='hpassword'>
+    </div>
+    
+    <div>
+      <label class='vert'> <?php echo TEXT_EMAIL; ?> </label>
+      <input type='text' name='email'>
+    </div>
 
-              <tr>
-                <td></td>   
-                <td align="right">
-                  <input type='submit' name='login' value='ok' style="width:100px" align="right"> <br/>
-                </td>
-              </tr>
+    <input type='submit' name='login' value='ok' style="width:100px" align="right">
 
-              <?php  if ( $error ) {  ?>
-                <tr>    
-                  <td colspan='2'> <label class='red'> <?php echo $error; ?> </label> </td>
-                </tr>
-              <?php } ?>
-            </table>
-          </form> 
-        </td>
-      </tr>
-      </table>
-  </center>
-  <br/>
+  </form>
+
+</div>
+  
+  <?php  if ( $error ) {  ?>
+    <label class='red'> <?php echo $error; ?> </label>
+  <?php } ?>
+
   <center> <a href="http://ek2012.gameagenda.nl/"> Klik hier om terug te gaan naar het inlog scherm  </a> <br/> </center>
   <br/>
 </body>

@@ -2,7 +2,7 @@
 
 <?php
 
-<!-- signup.php -->
+// signup.php
 define ('TEXT_EXPLAIN_SIGNUP', 'Na aanmelding kijk in je mail voor verificatie link. Daarna kan worden ingelogd.');
 define ('TEXT_SIGNUP_TITLE', 'Aanmelden');
 define ('TEXT_USER', 'Gebruiker');
