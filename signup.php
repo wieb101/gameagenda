@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html xmlns:ng="http://angularjs.org" ng-app>
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
       <title>Signup</title>
@@ -7,7 +7,16 @@
 
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
       <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-      
+
+      <style type="text/css">
+        .css-form input.ng-invalid.ng-dirty {
+          background-color: #FA787E;
+        }
+        .css-form input.ng-valid.ng-dirty {
+          background-color: #78FA89;
+        }
+      </style>  
+
     </head>
 
 <body>
@@ -68,38 +77,49 @@ function userAvail($username) {
 
 ?>
 
-
-<div>
+<div ng-controller="Controller"> 
   <?php echo TEXT_EXPLAIN_SIGNUP; ?>
-  <form method='POST' name="signupForm" style='login'> 
+  <form method='POST' name="signupForm" novalidate class="css-form">
 
     <h1> <?php echo TEXT_SIGNUP_TITLE; ?> </h1>
     <div>
-      <label class='vert'><?php echo TEXT_USER; ?> </label>
-      <input type='text' name='username'>
+      <input type='text' name='username' ng-model="user.name" placeholder=<?php echo TEXT_USER; ?> required>
     </div>
 
     <div>
-      <label class='vert'> <?php echo TEXT_PASSWORD; ?> </label> 
-      <input type='password' name='password'> 
+      <input type='password' name='password' ng-model="user.password" placeholder=<?php echo TEXT_PASSWORD; ?> required> 
     </div>
 
     <div>
-      <label class='vert'> <?php echo TEXT_REPEAT_PASSWORD; ?> </label>
-      <input type='password' name='hpassword'>
+      <input type='password' name='hpassword' ng-model="user.repeatpassword" placeholder=<?php echo TEXT_REPEAT_PASSWORD; ?> required>
     </div>
     
     <div>
-      <label class='vert'> <?php echo TEXT_EMAIL; ?> </label>
-      <input type='text' name='email'>
+      <input type='email' name='email' ng-model="user.email" placeholder=<?php echo TEXT_EMAIL; ?> required>
     </div>
 
-    <input type='submit' name='login' value='ok' style="width:100px" align="right">
+    <input type='submit' name='login' value='ok'>
 
   </form>
 
 </div>
-  
+
+<script>
+  function Controller($scope) {
+    $scope.master = {};
+ 
+    $scope.update = function(user) {
+      $scope.master = angular.copy(user);
+    };
+ 
+    $scope.reset = function() {
+      $scope.user = angular.copy($scope.master);
+    };
+ 
+    $scope.reset();
+  }
+</script>
+
   <?php  if ( $error ) {  ?>
     <label class='red'> <?php echo $error; ?> </label>
   <?php } ?>
