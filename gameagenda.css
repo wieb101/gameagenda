@@ -1,0 +1,175 @@
+body, td
+{
+	font-family: Calibri, Verdana, Arial; font-size: 12pt;
+}
+body 
+{
+	/*background-image: url(./images/bg_index.jpg); background-repeat: repeat-y; background-position: top center;*/
+	background-image: url(./images/backgrass.jpg); background-repeat: repeat; background-position: top center; background-size: 100%;
+	margin: 0px;
+}
+h1
+{
+	font-size: 21pt;
+}
+h2
+{
+	font-size: 14pt;
+}
+a 
+{
+	color: orange; text-decoration:none; 
+}
+a:hover 
+{ 
+	text-decoration:underline; 
+}
+
+#countdown
+{
+	height: 32px; font-size: 14pt;
+}
+
+#loginContainer 
+{ 
+	height: 600px;
+	background-color: white; 
+	background-image: url(./images/bg_stadion.jpg); background-repeat: no-repeat; background-position: center center;
+	color: black;
+}
+
+#loginContainer	input 
+{ 
+	border: 1px solid silver; 
+}
+
+table.title {
+	background-color: #003399;
+	width: 100%;
+	color: #FFFFFF;
+}
+		
+		
+div.menu
+{
+	background-color:#003399;
+	text-align: center;
+	padding: 4px;
+}
+
+td.menuitem 
+{
+	width: 10%;
+	text-align: center;
+	
+	border-right: 1px solid #808080;
+	border-left: 1px solid #808080;
+
+	background-color:#FFCC00;
+	color: #000000;
+}
+		
+td.menuitem a
+{
+	text-decoration: none;
+	color: #000000; !important;		/* was #003399 */
+}
+		
+td.menuitem a:hover 
+{
+	text-decoration: underline; 
+	color: #003399 !important;
+}
+
+td.col {
+	border: 1px solid #808080;
+	background-color:#FFCC00;
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: black;
+	text-align: center;
+}
+
+td.aUser {
+	width: 200px;
+	text-align: center;
+	border: 1px solid #808080;
+	
+	
+	font-weight: bold;
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+}
+/* your matches */ 
+td.group {
+	border-width: 3px;
+	border-color:#FF9900;
+	border-collapse:separate;
+	border-style: solid;
+}
+
+label {
+	float: left;
+	width: 110px;
+	font-weight: bold;
+	font-size: 12px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+label.teamb {
+	float: right;
+	width: 110px;
+	font-weight: bold;
+	font-size: 12px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+		
+		
+td.teamb {
+	align: right;
+}
+		
+/* NEW STUFF */
+table.standard {
+	border: 1px solid #000000;
+	/*margin: 5px;*/
+	background-color: #FFFFFF;
+	
+	
+}
+
+th.standard {
+	border: 1px solid #808080;
+	background-color:#FFCC00;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+th.row2 {
+	border: 1px solid #808080;
+	background-color:#FFCC33;
+	color: #FFFFFF;
+	text-align: center;
+	width: 100px;
+}
+
+td.centered {	
+	text-align: center;
+	
+}
+
+table.outer {
+	border-top : 24px solid #FFCC00;
+	width: 100%;
+	
+}
+
+td.outer {
+
+}
+
+
+@media print {
+  	.noprint { 
+  		display: none; 
+	}
+}
+
+
