@@ -49,8 +49,8 @@ if ( $username && $password && $hpassword && $email ) {
       $query = "INSERT INTO user ( username, password, email, verifyMailHash ) VALUES ('" . $username . "', '" . $password . "', '" . $email . "', '" . $rstr . "' )";
       mysql_query($query) or die('Error, insert query failed');
             
-      $message = "" . TEXT_EMAIL_VERIFYLINK . " http://ek2012.gameagenda.nl/verifymail.php?key=" . $rstr;
-       mail($email, TEXT_EMAIL_TITLE, $message, 'From: noreply@gameagenda.nl' . "\r\n");
+      $message = "" . TEXT_EMAIL_VERIFYLINK . " http://". $domain ."/verifymail.php?key=" . $rstr;
+       mail($email, TEXT_EMAIL_TITLE, $message, 'From: ' . FROM_EMAILADDRES . ' ' . "\r\n");
     }
     
   }
@@ -64,28 +64,21 @@ if ( $username && $password && $hpassword && $email ) {
 <div ng-controller="Controller"> 
   <?php echo TEXT_EXPLAIN_SIGNUP; ?>
   <form method='POST' name="signupForm" novalidate class="css-form">
-
     <h1> <?php echo TEXT_SIGNUP_TITLE; ?> </h1>
     <div>
       <input type='text' name='username' ng-model="user.name" placeholder=<?php echo TEXT_USER; ?> required>
     </div>
-
     <div>
       <input type='password' name='password' ng-model="user.password" placeholder=<?php echo TEXT_PASSWORD; ?> required> 
     </div>
-
     <div>
       <input type='password' name='hpassword' ng-model="user.repeatpassword" placeholder=<?php echo TEXT_REPEAT_PASSWORD; ?> required>
     </div>
-
     <div>
       <input type='email' name='email' ng-model="user.email" placeholder=<?php echo TEXT_EMAIL; ?> required>
     </div>
-
     <input type='submit' name='login' value='ok'>
-
   </form>
-
 </div>
 
 <script>
@@ -108,7 +101,7 @@ if ( $username && $password && $hpassword && $email ) {
     <label class='red'> <?php echo $error; ?> </label>
   <?php } ?>
 
-  <center> <a href="http://ek2012.gameagenda.nl/"> Klik hier om terug te gaan naar het inlog scherm  </a> <br/> </center>
+  <center> <a href="<?php echo "http://" . $domain . "/" ; ?> "> Klik hier om terug te gaan naar het inlog scherm  </a> <br/> </center>
   <br/>
 </body>
 </html>
