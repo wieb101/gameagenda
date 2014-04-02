@@ -59,22 +59,6 @@ if ( $username && $password && $hpassword && $email ) {
   }
 }
 
-function isEmailKnown($email) {
-  $query = "SELECT email FROM user WHERE email = '" . $email . "'";
-  $resulte = mysql_query($query);
-  if (!resulte) return false;
-  if ($row = mysql_fetch_assoc($resulte)) return true;
-  return false;      
-}
-
-function userAvail($username) {
-  $query = "SELECT username FROM user WHERE username = '" . $username . "'";
-  $resultu = mysql_query($query); 
-  if (!resultu) return false;
-  if ($row = mysql_fetch_assoc($resultu)) return false;
-  return true;
-}
-
 ?>
 
 <div ng-controller="Controller"> 
@@ -93,7 +77,7 @@ function userAvail($username) {
     <div>
       <input type='password' name='hpassword' ng-model="user.repeatpassword" placeholder=<?php echo TEXT_REPEAT_PASSWORD; ?> required>
     </div>
-    
+
     <div>
       <input type='email' name='email' ng-model="user.email" placeholder=<?php echo TEXT_EMAIL; ?> required>
     </div>
