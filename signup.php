@@ -16,6 +16,7 @@
 
 require ("./includes/dbconnect.php");
 require ("./includes/config.php");
+require ("./language/nl.php");            <!-- alleen NL is beschikbaar -->
 include 'functies.php';
 
 $username = mysql_real_escape_string($_POST['username']);
@@ -28,10 +29,10 @@ if ( $username && $password && $hpassword && $email ) {
   if ( $password == $hpassword ) {
     
     if ( (isEmailKnown ( $email )) == true ) {
-      $error = "Er is al een account die gebruikt maakt van dit mail adres.";
+      $error = TEXT_ERROR_EMAIL_USED;
     }
     elseif ( (userAvail ( $username )) == false ) {
-      $error = "Gebruikersnaam is niet meer beschikbaar.";
+      $error = TEXT_ERROR_USERNAME_UNAVAIL;
     }
     
     if ( !$error ) {
@@ -39,48 +40,30 @@ if ( $username && $password && $hpassword && $email ) {
       $query = "INSERT INTO user ( username, password, email, verifyMailHash ) VALUES ('" . $username . "', '" . $password . "', '" . $email . "', '" . $rstr . "' )";
       mysql_query($query) or die('Error, insert query failed');
             
-      $message = "Klik op de volgende link om je email te verifieren: http://ek2012.gameagenda.nl/verifymail.php?key=" . $rstr;
-       mail($email, 'EK 2012 Poule - email verification.', $message, 'From: noreply@gameagenda.nl' . "\r\n");
+      $message = "" . TEXT_EMAIL_VERIFYLINK . " http://ek2012.gameagenda.nl/verifymail.php?key=" . $rstr;
+       mail($email, TEXT_EMAIL_TITLE, $message, 'From: noreply@gameagenda.nl' . "\r\n");
     }
     
   }
   else {
-    $error = "Wachtwoorden komen niet met elkaar overeen.";
+    $error = TEXT_ERROR_REPEAT_PASSWORD;
   }
 }
 
 function isEmailKnown($email) {
-    
   $query = "SELECT email FROM user WHERE email = '" . $email . "'";
   $resulte = mysql_query($query);
-  if (!resulte) {
-    return false;
-  }
-  else {
-    if ($row = mysql_fetch_assoc($resulte)) {
-      return true;
-    }
-    else {
-      return false;
-    }
-        
-  }
+  if (!resulte) return false;
+  if ($row = mysql_fetch_assoc($resulte)) return true;
+  return false;      
 }
 
 function userAvail($username) {
   $query = "SELECT username FROM user WHERE username = '" . $username . "'";
   $resultu = mysql_query($query); 
-  if (!resultu) {
-    return false;
-  }
-  else {
-    if ($row = mysql_fetch_assoc($resultu)) {
-      return false;
-    }
-    else {
-      return true;
-    }       
-  }
+  if (!resultu) return false;
+  if ($row = mysql_fetch_assoc($resultu)) return false;
+  return true;
 }
 
 ?>
@@ -90,30 +73,30 @@ function userAvail($username) {
       <table>
       <tr>                 
         <td align="right" valign="bottom" bordercolor="#333333" >
-          Na aanmelding kijk in je mail voor verificatie link. Daarna kan worden ingelogd.
+          <?php echo TEXT_EXPLAIN_SIGNUP; ?>
           <form method='POST' name="signupForm" style='login'> 
             <table>
               <tr> 
-                <td align="left"> <h1> Aanmelden </h1> </td>
+                <td align="left"> <h1> <?php echo TEXT_SIGNUP_TITLE; ?> </h1> </td>
               </tr>
 
               <tr>
-                <td align='left'> <label class='vert'> Gebruiker:       </label> </td>
+                <td align='left'> <label class='vert'><?php echo TEXT_USER; ?> </label> </td>
                 <td> <input type='text' name='username'>  </td>
               </tr>
 
               <tr>
-                <td align="left"> <label class='vert'> Wachtwoord:      </label> </td>
+                <td align="left"> <label class='vert'> <?php echo TEXT_PASSWORD; ?> </label> </td>
                 <td> <input type='password' name='password'>  </td>
               </tr>
 
               <tr>
-                <td align="left"> <label class='vert'> Herhaal wachtwoord:  </label> </td>
+                <td align="left"> <label class='vert'> <?php echo TEXT_REPEAT_PASSWORD; ?> </label> </td>
                 <td> <input type='password' name='hpassword'> </td>
               </tr>
 
               <tr>
-                <td align="left"> <label class='vert'> Email:           </label>     </td>
+                <td align="left"> <label class='vert'> <?php echo TEXT_EMAIL; ?> </label> </td>
                 <td> <input type='text' name='email'> </td>
               </tr>
 
