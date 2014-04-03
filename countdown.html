@@ -1,0 +1,61 @@
+<html>
+ <head>
+<style>
+		.h3 {
+			font-family: Futura, verdana;
+		}
+</style>
+<script>
+
+function Countdown(then) {
+     
+     	this.then = then;
+     	
+     	function setElement(id, value) {
+     		if (value.length < 2) {
+     	    	value = "0" + value;
+     		}
+     	
+    		window.document.getElementById(id).innerHTML = value;
+    	}
+    	
+    	function countdown() {
+    		now  		  = new Date();
+    	  	diff		  = new Date(this.then - now);
+    	  	
+    		seconds_left  = Math.floor(diff.valueOf() / 1000);
+    	
+    		seconds  = Math.floor(seconds_left / 1) % 60;
+    		minutes  = Math.floor(seconds_left / 60) % 60;
+    		hours    = Math.floor(seconds_left / 3600) % 24;
+    		days     = Math.floor(seconds_left / 86400) % 86400;
+   		
+    		setElement('countdown-days', days);
+    		setElement('countdown-hours', hours);
+    		setElement('countdown-minutes', minutes);
+    		setElement('countdown-seconds', seconds);
+    		
+    		countdown.timer = setTimeout(countdown, 1000);
+    	}
+    	
+    		
+    	function start() {
+    		this.timer = setTimeout(countdown, 1000);
+    	}
+    	
+    	start(then);	
+    }
+
+	
+
+</script>
+</head>
+<body onload='Countdown(new Date("Jun 8 2012 18:00:00"));'>
+ 	<h2 class="style1">
+	<span id="countdown-days"></span> Dagen
+    
+    	<span id="countdown-hours"></span> uur <span id="countdown-minutes"></span> minuten en <span id="countdown-seconds"> </span> seconden
+	</h2>
+</body>
+
+</html>
